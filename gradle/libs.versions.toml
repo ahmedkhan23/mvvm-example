@@ -37,6 +37,7 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndr
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 lifcyceycle-compose = { group = "androidx.lifecycle", name ="lifecycle-viewmodel-compose", version = "lifecycleRuntimeKtx"}
+coil-compose = "io.coil-kt:coil-compose:2.4.0"
 
 retrofit = { module = "com.squareup.retrofit2:retrofit" , version.ref = "retrofit" }
 retrofit-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitSerializationConverter" }

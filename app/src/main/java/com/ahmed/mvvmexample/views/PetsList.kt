@@ -12,11 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ahmed.mvvmexample.viewmodel.PetsViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 fun PetList(modifier: Modifier) {
-    val petsViewModel: PetsViewModel = viewModel()
+    val petsViewModel: PetsViewModel = koinViewModel()
     LazyColumn(
         modifier = modifier
     ) {

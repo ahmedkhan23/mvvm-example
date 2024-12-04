@@ -1,5 +1,6 @@
 package com.ahmed.mvvmexample.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahmed.mvvmexample.data.NetworkResult
@@ -12,11 +13,13 @@ import kotlinx.coroutines.launch
 
 class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
 
+
+    val petsUIState = MutableStateFlow(PetsUIState())
+
     init {
         getPets()
     }
 
-    val petsUIState = MutableStateFlow(PetsUIState())
 
     private fun getPets() {
         petsUIState.value = PetsUIState(isLoading = true)

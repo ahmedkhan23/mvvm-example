@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                             title = {
                                 Text(text = "Pets")
                             },
-                            colors =  TopAppBarDefaults.smallTopAppBarColors(
+                            colors =  TopAppBarDefaults.topAppBarColors(
                                 containerColor = MaterialTheme.colorScheme.primary,
                             )
                         )
@@ -46,21 +46,5 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MVVMExampleTheme {
-        Greeting("Android")
     }
 }

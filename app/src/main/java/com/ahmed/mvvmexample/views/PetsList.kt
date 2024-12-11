@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ahmed.mvvmexample.viewmodel.PetsViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ahmed.mvvmexample.data.Cat
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -42,7 +43,8 @@ import org.koin.androidx.compose.koinViewModel
 //}
 
 @Composable
-fun PetList(modifier: Modifier) {
+fun PetList(modifier: Modifier,
+            onPetClicked: (Cat)->Unit) {
     val petsViewModel: PetsViewModel = koinViewModel()
     val petsUiState: PetsUIState by petsViewModel.petsUIState.collectAsStateWithLifecycle()
 

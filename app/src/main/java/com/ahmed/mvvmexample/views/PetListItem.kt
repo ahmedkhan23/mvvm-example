@@ -1,5 +1,6 @@
 package com.ahmed.mvvmexample.views
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -18,7 +19,8 @@ import com.ahmed.mvvmexample.data.Cat
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun PetListItem(cat: Cat) {
+fun PetListItem(cat: Cat,
+                onPetClicked: (Cat) -> Unit) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,6 +30,9 @@ fun PetListItem(cat: Cat) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
+                .clickable {
+                    onPetClicked(cat)
+                }
         ) {
             AsyncImage(
                 model = "https://cataas.com/cat/${cat.id}",

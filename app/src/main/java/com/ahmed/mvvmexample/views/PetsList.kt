@@ -63,7 +63,8 @@ fun PetList(modifier: Modifier,
         ) {
             LazyColumn {
                 items(petsUiState.pets) { pet ->
-                    PetListItem(cat = pet)
+                    PetListItem(cat = pet,
+                        onPetClicked = onPetClicked)
                 }
             }
         }

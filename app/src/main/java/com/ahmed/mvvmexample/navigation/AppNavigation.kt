@@ -14,7 +14,17 @@ fun AppNavigation() {
         startDestination = Screens.PetsScreen.route
     ) {
         composable(Screens.PetsScreen.route) {
-            PetsScreen(onPetClicked = { })
+            PetsScreen(onPetClicked = {
+                navController.navigate(Screens.PetsDetailsScreen.route)
+            })
+        }
+
+        composable(Screens.PetsDetailsScreen.route) {
+            PetDetailsScreen(
+                onBackPressed = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

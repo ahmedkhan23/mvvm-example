@@ -26,10 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.ahmed.mvvmexample.data.Cat
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun PetDetailsScreenContent(modifier: Modifier){
+fun PetDetailsScreenContent(modifier: Modifier, cat: Cat){
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -38,7 +39,7 @@ fun PetDetailsScreenContent(modifier: Modifier){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AsyncImage(
-            model = "https://cataas.com/cat/rV1MVEh0Af2Bm400",
+            model = "https://cataas.com/cat/${cat.id}",
             contentDescription = "Cute Cat",
             modifier = Modifier
                 .fillMaxWidth()
@@ -50,13 +51,13 @@ fun PetDetailsScreenContent(modifier: Modifier){
             modifier = Modifier
                 .padding(start = 3.dp, end = 3.dp)
         ) {
-            repeat(2) {
+            repeat(cat.tags.size) {
                 SuggestionChip(
                     modifier = Modifier
                         .padding(start = 3.dp, end = 3.dp),
                     onClick = { },
                     label = {
-                        Text(text = "Tag $it")
+                        Text(text = cat.tags[it])
                     }
                 )
             }
@@ -67,7 +68,7 @@ fun PetDetailsScreenContent(modifier: Modifier){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PetDetailsScreen(onBackPressed: () -> Unit) {
+fun PetDetailsScreen(onBackPressed: () -> Unit, cat: Cat) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -92,7 +93,8 @@ fun PetDetailsScreen(onBackPressed: () -> Unit) {
         },
         content = { paddingValues ->
             PetDetailsScreenContent(
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier.padding(paddingValues),
+                cat = cat
             )
 
         }

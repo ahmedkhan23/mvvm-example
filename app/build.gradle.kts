@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.bundles.networking)
     implementation(libs.coil.compose)
     implementation(libs.compose.navigation)
+    implementation(libs.compose.window.size)
+    implementation(libs.androidx.window)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -22,29 +22,10 @@ import com.ahmed.mvvmexample.data.Cat
 import org.koin.androidx.compose.koinViewModel
 
 
-//@Composable
-//fun PetList(modifier: Modifier) {
-//    val petsViewModel: PetsViewModel = koinViewModel()
-//    LazyColumn(
-//        modifier = modifier
-//    ) {
-//        items(petsViewModel.getPets()) { pet ->
-//            Row(
-//              modifier = Modifier
-//                  .fillMaxWidth()
-//                  .padding(10.dp),
-//                horizontalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                Text(text = "Name: ${pet.name}")
-//                Text(text = "Species: ${pet.species}")
-//            }
-//        }
-//    }
-//}
-
 @Composable
 fun PetList(modifier: Modifier,
-            onPetClicked: (Cat)->Unit) {
+            onPetClicked: (Cat)->Unit,
+            pets: List<Cat>) {
     val petsViewModel: PetsViewModel = koinViewModel()
     val petsUiState: PetsUIState by petsViewModel.petsUIState.collectAsStateWithLifecycle()
 

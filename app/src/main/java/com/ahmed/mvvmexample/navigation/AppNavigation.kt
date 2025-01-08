@@ -1,43 +1,53 @@
 package com.ahmed.mvvmexample.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ahmed.mvvmexample.data.Cat
+import com.ahmed.mvvmexample.views.FavoritePetsScreen
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
+fun AppNavigation(
+    contentType: ContentType,
+    navHostController: NavHostController = rememberNavController()
+) {
     NavHost(
-        navController = navController,
+        navController = navHostController,
         startDestination = Screens.PetsScreen.route
     ) {
         composable(Screens.PetsScreen.route) {
-            PetsScreen(onPetClicked = { cat ->
-                navController.navigate(
-                    "${Screens.PetsDetailsScreen.route}/${Json.encodeToString(cat)}"
-                )
-            })
+            PetsScreen(
+                onPetClicked = { cat ->
+                    navHostController.navigate(
+                        "${Screens.PetsDetailsScreen.route}/${Json.encodeToString(cat)}"
+                    )
+                },
+                contentType = contentType
+            )
         }
-
-        composable("${Screens.PetsDetailsScreen.route}/{cat}",
-                arguments = listOf(navArgument("cat") {
+        composable(
+            route = "${Screens.PetsDetailsScreen.route}/{cat}",
+            arguments = listOf(
+                navArgument("cat") {
                     type = NavType.StringType
                 }
             )
-        )
-        {
+        ) {
             PetDetailsScreen(
                 onBackPressed = {
-                    navController.popBackStack()
+                    navHostController.popBackStack()
                 },
                 cat = Json.decodeFromString(it.arguments?.getString("cat") ?: "")
             )
+        }
+        composable(Screens.FavoritePetsScreen.route) {
+            FavoritePetsScreen()
         }
     }
 }

@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
     implementation(libs.bundles.networking)
+    implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.coil.compose)
     implementation(libs.compose.navigation)
     implementation(libs.compose.window.size)

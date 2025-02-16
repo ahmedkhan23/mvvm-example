@@ -9,6 +9,8 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
@@ -26,6 +28,13 @@ val appModules = module {
 
     single { PetsViewModel(get())}
 
+    val logging = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+    val client = OkHttpClient.Builder()
+        .addInterceptor(logging)
+        .build()
+
     // retrofit instance
     single {
         Retrofit.Builder()
@@ -33,6 +42,7 @@ val appModules = module {
                 json.asConverterFactory(contentType = "application/json".toMediaType())
             )
             .baseUrl("https://cataas.com/api/")
+            .client(client)
             .build()
     }
 
